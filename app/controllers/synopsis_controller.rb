@@ -7,13 +7,15 @@ class SynopsisController < ApplicationController
     if @synopsis.save
       pdf = Prawn::Document.new
 
-      pdf.text "Title: #{@synopsis.title}"
-      pdf.text "Characters: #{@synopsis.characters}"
-      pdf.text "Main Conflict: #{@synopsis.main_conflict}"
-      pdf.text "Paragraph 1: #{@synopsis.paragraph1}"
-      pdf.text "Paragraph 2: #{@synopsis.paragraph2}"
-      pdf.text "Paragraph 3: #{@synopsis.paragraph3}"
-      pdf.text "Email: #{@synopsis.email}"
+      pdf.text "#{@synopsis.title}", size:16, style: :bold, align: :center
+
+      pdf.text "Characters: #{@synopsis.characters}", size:12, style: :bold, leading: 2.0
+
+      pdf.text "#{@synopsis.main_conflict}", size:12, leading: 2.0
+      pdf.text "#{@synopsis.paragraph1}", size:12, leading: 2.0
+      pdf.text "#{@synopsis.paragraph2}", size:12, leading: 2.0
+      pdf.text "#{@synopsis.paragraph3}", size:12, leading: 2.0
+      pdf.text "Email: #{@synopsis.email}", size:10, leading: 2.0
 
       pdf_filename = "#{@synopsis.title.parameterize}.pdf"
       pdf_path = Rails.root.join('public', 'pdfs', pdf_filename)
