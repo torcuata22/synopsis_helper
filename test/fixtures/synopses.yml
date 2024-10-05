@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  characters: MyText
+  main_conflict: MyText
+  paragraph1: MyText
+  paragraph2: MyText
+  paragraph3: MyText
+  email: MyString
+
+two:
+  characters: MyText
+  main_conflict: MyText
+  paragraph1: MyText
+  paragraph2: MyText
+  paragraph3: MyText
+  email: MyString
