@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ReactDom from 'react-dom';
 
 
-const SynopsisForm = () =>{
+
+const SynopsisForm = ({onSubmit}) =>{
     const [title, setTitle] = useState('');
     const [characters, setCharacters] = useState('');
     const [mainConflict, setMainConflict] = useState('');
@@ -29,12 +29,12 @@ const SynopsisForm = () =>{
         };
         console.log(formData);
         onSubmit(formData);
-    }
+    };
 
     return (
         <div className="container">
             <h4 className="text-center mt-5"> Create your Synopsis </h4>
-            <form className="form-group">
+            <form className="form-group" onSubmit={handleSubmit}>
                 <label className="form-label"> Title: </label>
                 <input className="form-control" type="text" name="title" value={title} onChange={e => setTitle(e.target.value)} />
        

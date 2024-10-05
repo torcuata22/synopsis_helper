@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDom from 'react-dom';
+import ReactDom from 'react-dom/client';
 import SynopsisForm from './SynopsisForm';
 
 const Welcome = () =>{
@@ -10,10 +10,32 @@ const Welcome = () =>{
         setShowForm(!showForm);
     };
 
-    const handleFormSubmit = (formData) => {
-        console.log('Form submitted:', formData);
-        // Handle the form data, e.g., generate PDF, send email, etc.
-    };
+    const handleFormSubmit = async (formData) => {
+            try {
+                const response = await fetch('/synopsis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), // CSRF token
+                    },
+                    body: JSON.stringify({ synopsis: formData }) // Wrap the form data in an object
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Synopsis successfully created:', data); 
+                    console.log('Form submitted successfully');
+                    // call your PDF generation function here 
+                } else {
+                    const errorData = await response.json();
+                    console.error('Failed to submit synopsis:', errorData.errors);
+                }
+            } catch (error) {
+                console.error('Error submitting synopsis:', error);
+            }
+        };
+        
+    
 
     return (
         <div className="container">
@@ -31,12 +53,17 @@ const Welcome = () =>{
             <button onClick={handleButtonClick} className="btn btn-secondary">
                 {showForm ? 'Hide Form' : 'Show Form'}
             </button>
-            {showForm && <SynopsisForm />} {/* Render the form conditionally */}
+            {showForm && <SynopsisForm onSubmit={handleFormSubmit} method='POST' />} {/* Render the form conditionally */}
+          
         </div>
-    );
-}
+    )
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    ReactDom.render(<Welcome />, document.getElementById('welcome')); //change to app.render()
-})
+const root = ReactDom.createRoot(document.getElementById('welcome'));
+ root.render(
+   
+        <Welcome />
+
+    
+);
  export default Welcome

@@ -12,8 +12,10 @@ class SynopsisController < ApplicationController
   end
 
 
+
+
   private
   def synopsis_params
-    params.require(:synopsis).permit(:characters, :main_conflict, :paragraph1, :paragraph2, :paragraph3, :email)
+    params.require(:synopsis).permit(:title, :characters, :main_conflict, :paragraph1, :paragraph2, :paragraph3, :email)
   end
 end
