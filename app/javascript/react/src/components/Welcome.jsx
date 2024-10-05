@@ -25,7 +25,8 @@ const Welcome = () =>{
                     const data = await response.json();
                     console.log('Synopsis successfully created:', data); 
                     console.log('Form submitted successfully');
-                    // call your PDF generation function here 
+                    // open pdf for review:
+                    window.open(data.pdf_url, '_blank'); 
                 } else {
                     const errorData = await response.json();
                     console.error('Failed to submit synopsis:', errorData.errors);

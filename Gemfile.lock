@@ -153,6 +153,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    pdf-core (0.10.0)
+    prawn (2.5.0)
+      matrix (~> 0.4)
+      pdf-core (~> 0.10.0)
+      ttfunk (~> 1.8)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -232,6 +237,8 @@ GEM
     stringio (3.1.1)
     thor (1.3.2)
     timeout (0.4.1)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
     turbo-rails (2.0.10)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -274,6 +281,7 @@ DEPENDENCIES
   debug
   jbuilder
   jsbundling-rails
+  prawn (~> 2.5)
   puma (>= 5.0)
   rails (~> 7.1.4)
   selenium-webdriver

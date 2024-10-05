@@ -67,3 +67,5 @@ group :test do
 end
 
 gem 'cssbundling-rails'
+#gem to generate pdf:
+gem 'prawn', '~> 2.5'
